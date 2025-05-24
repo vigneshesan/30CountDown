@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Countdown to May 23, 2026</title>
+        <style>
+            body {
+                font-family: "Segoe UI", sans-serif;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                background: #1e1e2f;
+                color: #fff;
+                flex-direction: column;
+                text-align: center;
+            }
+            h1 {
+                font-size: 2.5rem;
+                margin-bottom: 1rem;
+            }
+            .countdown {
+                display: flex;
+                gap: 20px;
+                font-size: 2rem;
+            }
+            .countdown div {
+                background: #2c2c3a;
+                padding: 20px;
+                border-radius: 10px;
+                min-width: 80px;
+            }
+            .label {
+                font-size: 0.9rem;
+                margin-top: 10px;
+                color: #bbb;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Time Untill Aarthi Turns 30</h1>
+        <div class="countdown">
+            <div>
+                <span id="days">--</span>
+                <div class="label">Days</div>
+            </div>
+            <div>
+                <span id="hours">--</span>
+                <div class="label">Hours</div>
+            </div>
+            <div>
+                <span id="minutes">--</span>
+                <div class="label">Minutes</div>
+            </div>
+            <div>
+                <span id="seconds">--</span>
+                <div class="label">Seconds</div>
+            </div>
+        </div>
+
+        <script>
+            const targetDate = new Date("May 23, 2026 00:00:00").getTime();
+
+            function updateCountdown() {
+                const now = new Date().getTime();
+                const distance = targetDate - now;
+
+                if (distance <= 0) {
+                    document.querySelector(".countdown").innerHTML =
+                        "<h2>Countdown Complete!</h2>";
+                    return;
+                }
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor(
+                    (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
+                );
+                const minutes = Math.floor(
+                    (distance % (1000 * 60 * 60)) / (1000 * 60),
+                );
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById("days").textContent = days;
+                document.getElementById("hours").textContent = hours
+                    .toString()
+                    .padStart(2, "0");
+                document.getElementById("minutes").textContent = minutes
+                    .toString()
+                    .padStart(2, "0");
+                document.getElementById("seconds").textContent = seconds
+                    .toString()
+                    .padStart(2, "0");
+            }
+
+            setInterval(updateCountdown, 1000);
+            updateCountdown();
+        </script>
+    </body>
+</html>
